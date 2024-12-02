@@ -1,0 +1,187 @@
+{
+    "entities": [
+        {
+            "id": "db6f7de6-3bbd-4626-a03f-10f3e10b9930",
+            "type": "indicator",
+            "name": "b81c177c440e84635f22dc97b0411de93a24a983a41af676ffbbb4439487aaef",
+            "pattern": "file:hashes.sha256"
+        },
+        {
+            "id": "a5b0de30-b279-4936-89e7-7c942153bccd",
+            "type": "indicator",
+            "name": "6464f9a5da26aa53fb2221255e908fd4da8edf0633f94051beee74a14b9b001c",
+            "pattern": "file:hashes.sha256"
+        },
+        {
+            "id": "9c307e9f-f1cf-4be3-8950-f8cd2bd09d58",
+            "type": "indicator",
+            "name": "w3wp.exe",
+            "pattern": "file:name"
+        },
+        {
+            "id": "61866c4d-a186-4413-af39-7567ba7d426d",
+            "type": "indicator",
+            "name": "default.aspx",
+            "pattern": "file:name"
+        },
+        {
+            "id": "b2ce2e17-323c-499c-a2c3-6d9b799c2ef7",
+            "type": "indicator",
+            "name": "iisfreb.dll",
+            "pattern": "file:name"
+        },
+        {
+            "id": "4c2ea2c6-501e-40f8-9c67-73c627d8db26",
+            "type": "indicator",
+            "name": "iiscore.dll",
+            "pattern": "file:name"
+        },
+        {
+            "id": "f1bea6eb-0acf-47a1-bc32-5e99a0ace71b",
+            "type": "indicator",
+            "name": "logon.aspx",
+            "pattern": "file:name"
+        },
+        {
+            "id": "d559980a-dba3-4a40-ab80-36e869f4e90f",
+            "type": "identity",
+            "name": "Symantec"
+        },
+        {
+            "id": "7b0a3e23-60b4-40e1-9e85-f18898a2f6ba",
+            "type": "identity",
+            "name": "Broadcom Software"
+        },
+        {
+            "id": "64183277-0476-4d32-a733-d9dcb723d74c",
+            "type": "malware",
+            "name": "Frebniis"
+        },
+        {
+            "id": "15b48547-858b-4146-af6e-22f0d0f0b8f2",
+            "type": "location",
+            "name": "Taiwan",
+            "country": "Taiwan"
+        },
+        {
+            "id": "03d0e20c-a93c-4a2c-9340-d1653cd1b812",
+            "type": "infrastructure",
+            "name": "Windows"
+        },
+        {
+            "id": "950e2c1c-3188-4c39-b069-5d7ddcf33c98",
+            "type": "tool",
+            "name": "IIS"
+        },
+        {
+            "id": "10881cdc-6541-48f3-8241-249c5daa05e9",
+            "type": "tool",
+            "name": ".NET"
+        },
+        {
+            "id": "6b6f6dbe-4485-41e6-a822-02c0d0820a0a",
+            "type": "identity",
+            "name": "Microsoft"
+        }
+    ],
+    "relationships": [
+        {
+            "id": "e26b24a6-6b36-427d-afb1-ec304f2b5058",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "db6f7de6-3bbd-4626-a03f-10f3e10b9930",
+            "target_ref": "64183277-0476-4d32-a733-d9dcb723d74c"
+        },
+        {
+            "id": "7c8d548f-5a96-4f9b-98de-3ffc2a486323",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "a5b0de30-b279-4936-89e7-7c942153bccd",
+            "target_ref": "64183277-0476-4d32-a733-d9dcb723d74c"
+        },
+        {
+            "id": "bcb14cbd-a611-4c7d-9c54-b4a4512cd230",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "9c307e9f-f1cf-4be3-8950-f8cd2bd09d58",
+            "target_ref": "950e2c1c-3188-4c39-b069-5d7ddcf33c98"
+        },
+        {
+            "id": "d58363d8-4986-4707-94e1-be6d485e16cf",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "61866c4d-a186-4413-af39-7567ba7d426d",
+            "target_ref": "10881cdc-6541-48f3-8241-249c5daa05e9"
+        },
+        {
+            "id": "e2a49cbf-a676-4e7e-8577-aad75f7d83a1",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "4c2ea2c6-501e-40f8-9c67-73c627d8db26",
+            "target_ref": "950e2c1c-3188-4c39-b069-5d7ddcf33c98"
+        },
+        {
+            "id": "9c64ecfa-7ea1-4e70-a311-272c906deec4",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "f1bea6eb-0acf-47a1-bc32-5e99a0ace71b",
+            "target_ref": "10881cdc-6541-48f3-8241-249c5daa05e9"
+        },
+        {
+            "id": "b4b2c54f-4cbe-4aab-8d0a-ccc16ee1a0c6",
+            "type": "relationship",
+            "relationship_type": "uses",
+            "source_ref": "64183277-0476-4d32-a733-d9dcb723d74c",
+            "target_ref": "03d0e20c-a93c-4a2c-9340-d1653cd1b812"
+        },
+        {
+            "id": "e0028347-2523-4ae9-968c-33218f8552e2",
+            "type": "relationship",
+            "relationship_type": "uses",
+            "source_ref": "64183277-0476-4d32-a733-d9dcb723d74c",
+            "target_ref": "950e2c1c-3188-4c39-b069-5d7ddcf33c98"
+        },
+        {
+            "id": "0e3bd826-5b88-47fc-aa24-18dca05a2a5a",
+            "type": "relationship",
+            "relationship_type": "targets",
+            "source_ref": "64183277-0476-4d32-a733-d9dcb723d74c",
+            "target_ref": "15b48547-858b-4146-af6e-22f0d0f0b8f2"
+        },
+        {
+            "id": "dc1121bc-ff94-4fd2-8f84-b0c4dd802fab",
+            "type": "relationship",
+            "relationship_type": "targets",
+            "source_ref": "18326477-0476-4d32-a733-d94cdcb723d7",
+            "target_ref": "15b48547-858b-4146-af6e-22f0d0f0b8f2"
+        },
+        {
+            "id": "1f5f0f8e-cb68-4f4c-aa27-9643da101612",
+            "type": "relationship",
+            "relationship_type": "uses",
+            "source_ref": "18326477-0476-4d32-a733-d94cdcb723d7",
+            "target_ref": "950e2c1c-3188-4c39-b069-5d7ddcf33c98"
+        },
+        {
+            "id": "b2ce2e17-323c-499c-a2c3-6d9c2ef79b79",
+            "type": "relationship",
+            "relationship_type": "indicates",
+            "source_ref": "b2ce2e17-323c-499c-a2c3-6d9b799c2ef7",
+            "target_ref": "950e2c1c-3188-4c39-b069-5d7ddcf33c98"
+        },
+        {
+            "id": "e2eb2c17-323c-499c-a2c3-6df79b799c2e",
+            "type": "relationship",
+            "relationship_type": "uses",
+            "source_ref": "18326477-0476-4d32-a733-d94cdcb723d7",
+            "target_ref": "03d0e20c-a93c-4a2c-9340-d1653cd1b812"
+        },
+        {
+            "id": "2c1e2eb7-323c-499c-a2c3-6db799c2ef79",
+            "type": "relationship",
+            "relationship_type": "uses",
+            "source_ref": "64183277-0476-4d32-a733-d9dcb723d74c",
+            "target_ref": "10881cdc-6541-48f3-8241-249c5daa05e9"
+        }
+    ]
+}

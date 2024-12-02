@@ -1,0 +1,956 @@
+{
+    "objects": {
+        "domain": [
+            {
+                "name": "ATTACK_PATTERN",
+                "description": "A type of TTP that describe ways that adversaries attempt to compromise targets."
+            },
+            {
+                "name": "CAMPAIGN",
+                "description": "A grouping of adversarial behaviors that describes a set of malicious activities or attacks (sometimes called waves) that occur over a period of time against a specific set of targets."
+            },
+            {
+                "name": "COURSE_OF_ACTION",
+                "description": "A recommendation from a producer of intelligence to a consumer on the actions that they might take in response to that intelligence."
+            },
+            {
+                "name": "IDENTITY",
+                "description": "Actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, organizations, systems or groups (e.g., the finance sector)."
+            },
+            {
+                "name": "INDICATOR",
+                "description": "Contains a pattern that can be used to detect suspicious or malicious cyber activity."
+            },
+            {
+                "name": "INFRASTRUCTURE",
+                "description": "Represents a type of TTP and describes any systems, software services and any associated physical or virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are part of defence, database servers targeted by an attack, etc.)."
+            },
+            {
+                "name": "LOCATION",
+                "description": "Represents a geographic location."
+            },
+            {
+                "name": "MALWARE",
+                "description": "A type of TTP that represents malicious code."
+            },
+            {
+                "name": "THREAT_ACTOR",
+                "description": "Actual individuals, groups, or organizations believed to be operating with malicious intent."
+            },
+            {
+                "name": "TOOL",
+                "description": "Legitimate software that can be used by threat actors to perform attacks."
+            },
+            {
+                "name": "VULNERABILITY",
+                "description": "A mistake in software that can be directly used by a hacker to gain access to a system or network."
+            }
+        ],
+        "cyber-observable": [
+            "ARTIFACT",
+            "AUTONOMOUS_SYSTEM",
+            "DIRECTORY",
+            "DOMAIN_NAME",
+            "EMAIL_ADDRESS",
+            "EMAIL_MESSAGE",
+            "FILE",
+            "IPv4_ADDRESS",
+            "IPv6_ADDRESS",
+            "MAC_ADDRESS",
+            "MUTEX",
+            "NETWORK_TRAFFIC",
+            "PROCESS",
+            "SOFTWARE",
+            "URL",
+            "USER_ACCOUNT",
+            "REGISTRY_KEY",
+            "X.509_CERTIFICATE"
+        ]
+    },
+    "relationships": {
+        "ATTACK_PATTERN": {
+            "MALWARE": [
+                {
+                    "name": "delivers",
+                    "description": "This Relationship describes that this Attack Pattern is used to deliver this malware instance (or family)."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that the related Malware or Tool is used to perform the behavior identified in the Attack Pattern."
+                }
+            ],
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that this Attack Pattern typically targets the type of victim, location, or vulnerability represented by the related Identity object."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that this Attack Pattern typically targets the type of victim, location, or vulnerability represented by the related Location object."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that this Attack Pattern typically targets the type of victim, location, or vulnerability represented by the related Vulnerability object."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that this Attack Pattern typically targets the type of victim, location, or vulnerability represented by the related Identity, Location, or Vulnerability object."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that the related Malware or Tool is used to perform the behavior identified in the Attack Pattern."
+                }
+            ]
+        },
+        "CAMPAIGN": {
+            "INSTRUSION_SET": [
+                {
+                    "name": "attributed-to",
+                    "description": "This Relationship describes that the Intrusion Set that is involved in carrying out the Campaign"
+                }
+            ],
+            "THREAT_ACTOR": [
+                {
+                    "name": "attributed-to",
+                    "description": "This Relationship describes that the Threat Actor that is involved in carrying out the Campaign"
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "compromises",
+                    "description": "This Relationship describes that the Campaign compromises the related Infrastructure."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "originates-from",
+                    "description": "This Relationship describes that the Campaign originates from the related Location."
+                },
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Campaign targets the type of victims described by the related Location."
+                }
+            ],
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Campaign targets the type of victims described by the related Identity."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Campaign uses exploits of the related Vulnerability."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Campaign typically use the related Attack Pattern."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Campaign typically use the related Malware."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Campaign typically use the related Tool."
+                }
+            ]
+        },
+        "COURSE_OF_ACTION": {
+            "INDICATOR": [
+                {
+                    "name": "investigates",
+                    "description": "This Relationship describes that the Course of Action can be used to investigate the Indicator."
+                },
+                {
+                    "name": "mitigates",
+                    "description": "This Relationship describes that the Course of Action can mitigate (e.g. respond to a threat) the related Indicator."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "remediates",
+                    "description": "This Relationship describes that the Course of Action can be used to remediate (e.g. clean up) the Vulnerability."
+                },
+                {
+                    "name": "mitigates",
+                    "description": "This Relationship describes that the Course of Action can mitigate (e.g. respond to a threat) the related Vulnerability."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "mitigates",
+                    "description": "This Relationship describes that the Course of Action can mitigate (e.g. respond to a threat) the related Attack Pattern."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "remediates",
+                    "description": "This Relationship describes that the Course of Action can be used to remediate (e.g. clean up) the Malware."
+                },
+                {
+                    "name": "mitigates",
+                    "description": "This Relationship describes that the Course of Action can mitigate (e.g. respond to a threat) the related Malware."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "mitigates",
+                    "description": "This Relationship describes that the Course of Action can mitigate (e.g. respond to a threat) the related Tool."
+                }
+            ]
+        },
+        "IDENTITY": {
+            "LOCATION": [
+                {
+                    "name": "located-at",
+                    "description": "This Relationship describes that the Identity is located at or in the related Location."
+                }
+            ]
+        },
+        "INDICATOR": {
+            "CAMPAIGN": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Campaign."
+                }
+            ],
+            "INSTRUSION_SET": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Intrusion Set."
+                }
+            ],
+            "THREAT_ACTOR": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Threat Actor."
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Infrastructure."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Attack Pattern."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Malware."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "indicates",
+                    "description": "This Relationship describes that the Indicator can detect evidence of the related Tool."
+                }
+            ],
+            "OBSERVED_DATA": [
+                {
+                    "name": "based-on",
+                    "description": "This relationship describes that the indicator was created based on information from an observed-data object."
+                }
+            ]
+        },
+        "INFRASTRUCTURE": {
+            "INFRASTRUCTURE": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this infrastructure instance communicates with the defined network addressable resource."
+                },
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance. An infrastructure instance consists of zero or more objects."
+                },
+                {
+                    "name": "controls",
+                    "description": "This Relationship describes that this infrastructure controls some other infrastructure."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that this infrastructure uses this other infrastructure to achieve its objectives."
+                }
+            ],
+            "IPv4_ADDRESS": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this infrastructure instance communicates with the defined network addressable resource."
+                },
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an IPv4 Address."
+                }
+            ],
+            "IPv6_ADDRESS": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this infrastructure instance communicates with the defined network addressable resource."
+                },
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an IPv6 Address."
+                }
+            ],
+            "DOMAIN_NAME": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this infrastructure instance communicates with the defined network addressable resource."
+                },
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Domain Name."
+                }
+            ],
+            "URL": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this infrastructure instance communicates with the defined network addressable resource."
+                },
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a URL."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "controls",
+                    "description": "This Relationship describes that this infrastructure controls some malware instance (or family)."
+                },
+                {
+                    "name": "delivers",
+                    "description": "This Relationship describes that this infrastructure is used to actively deliver a malware instance (or family)."
+                },
+                {
+                    "name": "hosts",
+                    "description": "This Relationship describes that this infrastructure has a tool running on it or is used to passively host the Malware."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "has",
+                    "description": "This Relationship describes that this specific Infrastructure has this specific Vulnerability."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "hosts",
+                    "description": "This Relationship describes that this infrastructure has a tool running on it or is used to passively host the Tool."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "located-at",
+                    "description": "This Relationship describes that the infrastructure originates from the related location."
+                }
+            ],
+            "ARTIFACT": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an Artifact."
+                }
+            ],
+            "AUTONOMOUS_SYSTEM": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an Autonomous System."
+                }
+            ],
+            "DIRECTORY": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Directory."
+                }
+            ],
+            "EMAIL_ADDRESS": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an Email Address."
+                }
+            ],
+            "EMAIL_MESSAGE": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as an Email Message."
+                }
+            ],
+            "FILE": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a File."
+                }
+            ],
+            "MAC_ADDRESS": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a MAC Address."
+                }
+            ],
+            "MUTEX": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Mutex."
+                }
+            ],
+            "NETWORK_TRAFFIC": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Network Traffic Packet."
+                }
+            ],
+            "PROCESS": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Process."
+                }
+            ],
+            "SOFTWARE": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a Software."
+                }
+            ],
+            "USER_ACCOUNT": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as a User Account."
+                }
+            ],
+            "REGISTRY_KEY": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as Windows Registry Key."
+                }
+            ],
+            "X.509_CERTIFICATE": [
+                {
+                    "name": "consists-of",
+                    "description": "This Relationship documents the objects that are used to make up an infrastructure instance, such as X.509 Certificate."
+                }
+            ]
+        },
+        "INSTRUSION_SET": {
+            "THREAT_ACTOR": [
+                {
+                    "name": "attributed-to",
+                    "description": "This Relationship describes that the related Threat Actor is involved in carrying out the Intrusion Set."
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Intrusion Set typically use the related Infrastructure."
+                },
+                {
+                    "name": "hosts",
+                    "description": "This Relationship describes that the Intrusion Set hosts or owns the related Infrastructure (e.g. an actor that rents botnets to other threat actors)."
+                },
+                {
+                    "name": "owns",
+                    "description": "This Relationship describes that the Intrusion Set hosts or owns the related Infrastructure (e.g. an actor that rents botnets to other threat actors)."
+                },
+                {
+                    "name": "compromises",
+                    "description": "This Relationship describes that the Intrusion Set compromises the related Infrastructure."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Intrusion Set targets the type of victims described by the related Location."
+                },
+                {
+                    "name": "originates-from",
+                    "description": "This Relationship describes that the Intrusion Set originates from the related Location."
+                }
+            ],
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Intrusion Set targets the type of victims described by the related Identity."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Intrusion Set uses exploits of the related Vulnerability."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Intrusion Set typically use the related Attack Pattern."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Intrusion Set typically use the related Malware."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Intrusion Set typically use the related Tool."
+                }
+            ]
+        },
+        "MALWARE": {
+            "THREAT_ACTOR": [
+                {
+                    "name": "authored-by",
+                    "description": "This Relationship describes that the malware instance or family was developed by the related Threat Actor."
+                }
+            ],
+            "INSTRUSION_SET": [
+                {
+                    "name": "authored-by",
+                    "description": "This Relationship describes that the malware instance or family was developed by the related Intrusion Set."
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "beacons-to",
+                    "description": "This Relationship describes that the malware instance or family beacons to or exfiltrates data to the related Infrastructure."
+                },
+                {
+                    "name": "exfiltrates-to",
+                    "description": "This Relationship describes that the malware instance or family beacons to or exfiltrates data to the related Infrastructure."
+                },
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that a malware instance or family is being used to target an Infrastructure."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship documents that this malware instance or family uses the Infrastructure to achieve its objectives."
+                }
+            ],
+            "IPv4_ADDRESS": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this malware instance (or family) communicates with (beacons to, connects to, or exfiltrated data to) the defined network addressable resource."
+                }
+            ],
+            "IPv6_ADDRESS": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this malware instance (or family) communicates with (beacons to, connects to, or exfiltrated data to) the defined network addressable resource."
+                }
+            ],
+            "DOMAIN_NAME": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this malware instance (or family) communicates with (beacons to, connects to, or exfiltrated data to) the defined network addressable resource."
+                }
+            ],
+            "URL": [
+                {
+                    "name": "communicates-with",
+                    "description": "This Relationship documents that this malware instance (or family) communicates with (beacons to, connects to, or exfiltrated data to) the defined network addressable resource."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "variant-of",
+                    "description": "This Relationship is used to document that one malware instance or family is a variant of another malware instance or family."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship documents that this malware instance or family uses the Malware to achieve its objectives."
+                },
+                {
+                    "name": "downloads",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another Malware instance. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                },
+                {
+                    "name": "drops",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another Malware instance. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                },
+                {
+                    "name": "controls",
+                    "description": "This Relationship documents that this malware instance (or family) can control other malware which may be resident on the same system on which it is executing."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "downloads",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another Tool. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                },
+                {
+                    "name": "drops",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another Tool. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship documents that this malware instance or family uses the Tool to achieve its objectives."
+                }
+            ],
+            "FILE": [
+                {
+                    "name": "downloads",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another File. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                },
+                {
+                    "name": "drops",
+                    "description": "These Relationships document that this malware instance (or family) downloads or drops another File. This is especially common with \"first-stage\" malware instances such as downloaders and droppers."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "exploits",
+                    "description": "This Relationship documents that this malware instance or family exploits or attempts to exploit a particular vulnerability."
+                },
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that a malware instance or family is being used to target a Vulnerability."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "originates-from",
+                    "description": "This Relationship documents that this malware instance or family originates from a particular Location."
+                },
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that a malware instance or family is being used to target a Location."
+                }
+            ],
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that a malware instance or family is being used to target an Identity."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship documents that this malware instance or family uses the Attack Pattern to achieve its objectives."
+                }
+            ]
+        },
+        "MALWARE_ANALYSIS": {
+            "MALWARE": [
+                {
+                    "name": "analysis-of",
+                    "description": "This Relationship describes that the malware analysis is results for the related malware."
+                },
+                {
+                    "name": "characterizes",
+                    "description": "This Relationship describes that the malware analysis describes the related malware."
+                },
+                {
+                    "name": "static-analysis-of",
+                    "description": "This Relationship describes that the malware analysis is static analysis results for the related malware."
+                },
+                {
+                    "name": "dynamic-analysis-of",
+                    "description": "This Relationship describes that the malware analysis is dynamic analysis results for the related malware."
+                }
+            ]
+        },
+        "THREAT_ACTOR": {
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Threat Actor targets the type of victims described by the related Identity."
+                },
+                {
+                    "name": "impersonates",
+                    "description": "This Relationship describes that the Threat Actor impersonates the related Identity."
+                },
+                {
+                    "name": "attributed-to",
+                    "description": "This Relationship describes that the Threat Actor's real identity is the related Identity."
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Threat Actor typically use the related Attack Pattern, Infrastructure,  Malware, or Tool."
+                },
+                {
+                    "name": "hosts",
+                    "description": "This Relationship describes that the Threat Actor hosts or owns the related Infrastructure (e.g. an actor that rents botnets to other threat actors)."
+                },
+                {
+                    "name": "owns",
+                    "description": "This Relationship describes that the Threat Actor hosts or owns the related Infrastructure (e.g. an actor that rents botnets to other threat actors)."
+                },
+                {
+                    "name": "compromises",
+                    "description": "This Relationship describes that the Threat Actor compromises the related Infrastructure."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Threat Actor targets the type of victims described by the related Location."
+                },
+                {
+                    "name": "located-at",
+                    "description": "This Relationship describes that the Threat Actor is located at or in the related Location."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship describes that the Threat Actor uses exploits of the related Vulnerability."
+                }
+            ],
+            "ATTACK_PATTERN": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Threat Actor typically use the related Attack Pattern."
+                }
+            ],
+            "MALWARE": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Threat Actor typically use the related Malware."
+                }
+            ],
+            "TOOL": [
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that attacks carried out as part of the Threat Actor typically use the related Tool."
+                }
+            ]
+        },
+        "TOOL": {
+            "MALWARE": [
+                {
+                    "name": "delivers",
+                    "description": "This Relationship describes that this Tool is used to deliver a malware instance (or family)."
+                },
+                {
+                    "name": "drops",
+                    "description": "This Relationship documents that this Tool drops a malware instance (or family)."
+                }
+            ],
+            "VULNERABILITY": [
+                {
+                    "name": "has",
+                    "description": "This Relationship describes that this specific Tool has this specific Vulnerability."
+                },
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that this Tool is being used to exploit the Vulnerability."
+                }
+            ],
+            "IDENTITY": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that this Tool is being used to target this Identity."
+                }
+            ],
+            "INFRASTRUCTURE": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that this Tool is being used to target this Infrastructure."
+                },
+                {
+                    "name": "uses",
+                    "description": "This Relationship describes that this Tool uses the related Infrastructure."
+                }
+            ],
+            "LOCATION": [
+                {
+                    "name": "targets",
+                    "description": "This Relationship documents that this Tool is being used to target this Location."
+                }
+            ]
+        },
+        "IPv4_ADDRESS": {
+            "MAC_ADDRESS": [
+                {
+                    "name": "resolves-to",
+                    "description": "This Relationship describes that this IPv4 Address resolves to one or more Layer 2 Media Access Control (MAC) addresses."
+                }
+            ],
+            "AUTONOMOUS_SYSTEM": [
+                {
+                    "name": "belongs-to",
+                    "description": "This Relationship describes that this IPv4 Address belongs to one or more autonomous systems (AS)."
+                }
+            ]
+        },
+        "IPv6_ADDRESS": {
+            "MAC_ADDRESS": [
+                {
+                    "name": "resolves-to",
+                    "description": "This Relationship describes that this IPv6 Address resolves to one or more Layer 2 Media Access Control (MAC) addresses."
+                }
+            ],
+            "AUTONOMOUS_SYSTEM": [
+                {
+                    "name": "belongs-to",
+                    "description": "This Relationship describes that this IPv6 Address belongs to one or more autonomous systems (AS)."
+                }
+            ]
+        }
+    },
+    "vocabulary": {
+        "MALWARE": {
+            "CAPABILITIES": [
+                "accesses-remote-machines",
+                "anti-debugging",
+                "anti-disassembly",
+                "anti-emulation",
+                "anti-memory-forensics",
+                "anti-sandbox",
+                "anti-vm",
+                "captures-input-peripherals",
+                "captures-output-peripherals",
+                "captures-system-state-data",
+                "cleans-traces-of-infection",
+                "commits-fraud",
+                "communicates-with-c2",
+                "compromises-data-availability",
+                "compromises-data-integrity",
+                "compromises-system-availability",
+                "controls-local-machine",
+                "degrades-security-software",
+                "degrades-system-updates",
+                "determines-c2-server",
+                "emails-spam",
+                "escalates-privileges",
+                "evades-av",
+                "exfiltrates-data",
+                "fingerprints-host",
+                "hides-artifacts",
+                "hides-executing-code",
+                "infects-files",
+                "infects-remote-machines",
+                "installs-other-components",
+                "persists-after-system-reboot",
+                "prevents-artifact-access",
+                "prevents-artifact-deletion",
+                "probes-network-environment",
+                "self-modifies",
+                "steals-authentication-credentials",
+                "violates-system-operational-integrity"
+            ],
+            "TYPES": [
+                "adware",
+                "backdoor",
+                "bot",
+                "bootkit",
+                "ddos",
+                "downloader",
+                "dropper",
+                "exploit-kit",
+                "keylogger",
+                "ransomware",
+                "remote-access-trojan",
+                "resource-exploitation",
+                "rogue-security-software",
+                "rootkit",
+                "screen-capture",
+                "spyware",
+                "trojan",
+                "unknown",
+                "virus",
+                "webshell",
+                "wiper",
+                "worm"
+            ],
+            "PROCESSORS": [
+                "alpha",
+                "arm",
+                "ia-64",
+                "mips",
+                "powerpc",
+                "sparc",
+                "x86",
+                "x86-64"
+            ],
+            "IMPLEMENTATION_LANGUAGE": [
+                "applescript",
+                "bash",
+                "c",
+                "c++",
+                "c#",
+                "go",
+                "java",
+                "javascript",
+                "lua",
+                "objective-c",
+                "perl",
+                "php",
+                "powershell",
+                "python",
+                "ruby",
+                "scala",
+                "swift",
+                "typescript",
+                "visual-basic"
+            ]
+        },
+        "INFRASTRUCTURE": {
+            "TYPES": [
+                "amplification",
+                "anonymization",
+                "botnet",
+                "command-and-control",
+                "exfiltration",
+                "hosting-malware",
+                "hosting-target-lists",
+                "phishing",
+                "reconnaissance",
+                "staging",
+                "unknown"
+            ]
+        },
+        "INDICATOR": {
+            "TYPES": [
+                "anomalous-activity",
+                "anonymization",
+                "benign",
+                "compromised",
+                "malicious-activity",
+                "attribution",
+                "unknown"
+            ]
+        },
+        "IDENTITY": {
+            "CLASSES": [
+                "individual",
+                "group",
+                "system",
+                "organization",
+                "class",
+                "unknown"
+            ]
+        },
+        "TOOL": {
+            "TYPES": [
+                "denial-of-service",
+                "exploitation",
+                "information-gathering",
+                "network-capture",
+                "credential-exploitation",
+                "remote-access",
+                "vulnerability-scanning",
+                "unknown"
+            ]
+        }
+    }
+}
